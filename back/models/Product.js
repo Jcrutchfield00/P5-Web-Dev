@@ -73,7 +73,7 @@ const products = [
   }
 ];
 
-export {products};
+// export {products};
 
 exports.find = () => {
   return new Promise((resolve, reject) => resolve(JSON.parse(JSON.stringify(products))));
