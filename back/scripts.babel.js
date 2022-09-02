@@ -39,7 +39,7 @@ function show(data) {
 
     console.log(data);
 
-    aTag.setAttribute("href", "/front/html/product.html? id=" + data._id);
+    aTag.setAttribute("href", "/front/html/product.html?id=" + data._id);
     newImage.setAttribute("src", data.imageUrl);
     newImage.setAttribute("alt", data.altTxt);
     newHeading.innerHTML = data.name;
