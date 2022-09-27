@@ -41,6 +41,7 @@ var data = " ";
         select.appendChild(optionElement);
     }
     //above code ends dropdown menu
+    productImage.classList.add("productImage");
      productImage.setAttribute('src', data.imageUrl);
     productImage.setAttribute('alt', data.altTxt);
 productTitle.innerHTML = data.name;
@@ -61,19 +62,26 @@ function updateCart(){
      console.log(selectColor);
      const selectQuantity = document.getElementById("quantity").value;
      console.log(selectQuantity);
+      const selectImg = document.getElementsByClassName("productImage");
+     //this is how i got the img to process hopefully it works
+      console.log(selectImg[0].src);
+      const alt = selectImg[0].alt;
+      const src = selectImg[0].src;
+      console.log(src);
+      console.log(alt);
     if(!cartItems){
         console.log('not working!');
         // cartItems = [];
         var item = {'item' : []};
     }else{
         console.log('working');
-        cartItems.push({"id" : productId, "color" : selectColor, "quantity" : selectQuantity, "price" : selectPrice, "title" : selectName}) 
+        cartItems.push({"id" : productId, "color" : selectColor, "quantity" : selectQuantity, "price" : selectPrice, "title" : selectName, "src" : src ,"alt" : alt}) 
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
     };
 };
 
-// const selectPrice = document.getElementById("price").innerText;
-// console.log(selectPrice);
+//  const selectPrice = document.getElementById("price").innerText;
+//  console.log(select);
 // const selectName = document.getElementById("title").innerText;
 // console.log(selectName);
 // const selectColor = document.getElementById("colors").value;
@@ -99,20 +107,25 @@ function clickAddToCart(){
      console.log(selectQuantity);
      const selectedQuantity=document.getElementById("quantity");
      const colorSelected = document.getElementById( "color");
-     
+     //below code is supposed to add the quantities together i believe
+     //or
+     //adds them to the cart
      if (selectedQuantity === "0") {    
         let itemIndex = cartItems.item.findIndex(item => data.id === id && data.color === selectColor)
         const cartQuantity = +cartItems.item[`${itemIndex}`].quantity
         const quantityToAdd = +selectedQuantity
           cartItems.item[`${itemIndex}`].quantity = `${cartQuantity + quantityToAdd}`
     }
+    //below code i dont really understand what its purpose is
     if (selectedQuantity === "0") {  
        if  ((cartItems.item.find(item =>item.id === id && item.color === colorSelected)));
-};
+};//below code means it doesnt add anything to local storage
     if(selectQuantity === "0"){
         console.log("error!")
          localStorage.removeItem("cartItems");
-    } else{
+    } 
+    //below code means everything checksout good 
+    else{
         console.log('yay!')
        // cartItems.push({"id" : productId, "color" : selectColor, "quantity" : selectQuantity, "price" : selectPrice, "title" : selectName})
      console.log(cartItems);
